@@ -63,4 +63,13 @@ tp = ("apple", "kiwi", "orange")
 print([len(i) for i in tp])
 print([len(i) for i in tp])
 
+#구구단
+for i in list(range(2, 10)):
+    print("{0}단 출력".format(i))
+    for j in list(range(1, 10)):
+        print("{0} * {1} = {2}".format(i, j, i*j))
 
+for i in list(range(2, 10)):
+    print(f"{i}단 출력")
+    for j in list(range(1, 10)):
+        print(f"{i} * {j} = {i*j}")
