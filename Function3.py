@@ -61,3 +61,6 @@ lst = list(range(1,11))
 print([i**2 for i in lst if i > 5])
 tp = ("apple", "kiwi", "orange")
 print([len(i) for i in tp])
+print([len(i) for i in tp])
+
+
