@@ -1,7 +1,7 @@
 import sqlite3
 
 #연결객체 생성
-con = sqlite3.connect("c:\\work\\test.db")
+con = sqlite3.connect("c:\\work\\sample.db")
 #커서 객체
 cur = con.cursor()
 
@@ -28,3 +28,6 @@ cur.execute("select * from PhoneBook;")
 # print(cur.fetchmany(2))
 print("---fetchall()---")
 print(cur.fetchall())
+
+# 트랜잭션 처리
+con.commit()
