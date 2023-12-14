@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from openpyxl import Workbook
+from openpyxl import Workbook   # 액셀 쓰기
 
-search_keyword='맥북에어'
+search_keyword='아이폰15'
 
 url = f'https://search.naver.com/search.naver?where=view&sm=tab_jum&query={search_keyword}'
 
@@ -29,26 +29,25 @@ for page in range(1, 101):
             blog_address_elem = post.find("a", 
                 attrs={"class":"name"}) 
             blog_address = blog_address_elem["href"]
-            blog_address_title_elem = post.find("a", 
-                            attrs={"class":"name"}) 
+            blog_address_title_elem = post.find("a", attrs={"class":"name"}) 
             blog_address_title = blog_address_title_elem.text 
         except TypeError:
             blog_address = "" 
             blog_address_title = ""
         
+        if blog_address != "":
+            post_date_elem = post.find('span', {'class':'sub'})
+            post_date = post_date_elem.text if post_date_elem else ""
+            post_title_elem = post.find('a',
+                {'class':'title_link _cross_trigger'})
+            post_title = post_title_elem.text if post_title_elem else "" 
 
-        post_date_elem = post.find('span', {'class':'sub'})
-        post_date = post_date_elem.text if post_date_elem else ""
-        post_title_elem = post.find('a',
-            {'class':'title_link _cross_trigger'})
-        post_title = post_title_elem.text if post_title_elem else "" 
+            print(blog_address)
+            print(blog_address_title)
+            print(post_title)
+            print(post_date)
 
-        print(blog_address)
-        print(blog_address_title)
-        print(post_title)
-        print(post_date)
-
-        ws.append([blog_address, blog_address_title, post_title, post_date])
+            ws.append([blog_address, blog_address_title, post_title, post_date])
 
 path = 'c:\\work\\'
 file_path = f'{path}{search_keyword}_blog_data.xlsx'
